@@ -1,0 +1,174 @@
+<!--Name: Ken Par-->
+<!--Student ID: 1084471-->
+
+<!DOCTYPE html>
+<html XMLns="http:/www.w3.org/1999/xHTML">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Book A Taxi</title>
+</head>
+
+<script src="script.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script src="ajax.js"></script>
+<script src="xhr.js"></script>
+<link rel="stylesheet" type="text/css" href="design.css">
+
+<div id="menu" class="center">
+    <h1>Cabs Online</h1>
+    <ul>
+        <li><a href="index.htm">Home</a></li>
+        <li><a href="booking.htm">Book A Taxi</a></li>
+        <li><a href="admin.htm">Admin</a></li>
+    </ul>
+</div>
+
+<body>
+
+<div id="mainform">
+    <div class="innerdiv">
+        <h3>Cabs Online Booking</h3>
+
+        <form action="Store.php" method='post' id="myForm">
+
+            <h3>Customer Details</h3>
+            <table>
+                <tr>
+                    <td>Customer Name</td>
+                    <td><input type='text' name='customername' id='customername1'
+                               onblur="validate('customername', this.value)"></td>
+                    <td>
+                        <div id='customername'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td><input type='text' name='customernumber' id='customernumber1'
+                               onblur="validate('customernumber', this.value)"></td>
+                    <td>
+                        <div id='customernumber'></div>
+                    </td>
+                </tr>
+
+            </table>
+
+            <h3>Pick Up Location</h3>
+            <table>
+                <tr>
+                    <td>Unit Number</td>
+                    <td><input type='text' name='unitnumber' id='unitnumber1'
+                               onblur="validate('unitnumber', this.value)"></td>
+                    <td>
+                        <div id='unitnumber'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Street Number</td>
+                    <td><input type='text' name='streetnumber' id='streetnumber1'
+                               onblur="validate('streetnumber', this.value)"></td>
+                    <td>
+                        <div id='streetnumber'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Street Name</td>
+                    <td><input type='text' name='streetname' id='streetname1'
+                               onblur="validate('streetname', this.value)"></td>
+                    <td>
+                        <div id='streetname'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Suburb</td>
+                    <td><input type='text' name='suburb' id='suburb1' onblur="validate('suburb', this.value)"></td>
+                    <td>
+                        <div id='suburb'></div>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>Destination</h3>
+            <table>
+                <tr>
+                    <td>Destination Address</td>
+                    <td><input type='text' name='destinationaddress' id='destinationaddress1' size="40"
+                               onblur="validate('destinationaddress', this.value)"></td>
+                    <td>
+                        <div id='destinationaddress'></div>
+
+                        <script>
+                            var pac_input = document.getElementById('destinationaddress1');
+
+                            (function pacSelectFirst(input) {
+                                // store the original event binding function
+                                var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
+
+                                function addEventListenerWrapper(type, listener) {
+                                    // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected,
+                                    // and then trigger the original listener.
+
+                                    if (type == "keydown") {
+                                        var orig_listener = listener;
+                                        listener = function (event) {
+                                            var suggestion_selected = $(".pac-item-selected").length > 0;
+                                            if (event.which == 13 && !suggestion_selected) {
+                                                var simulated_downarrow = $.Event("keydown", {keyCode: 40, which: 40})
+                                                orig_listener.apply(input, [simulated_downarrow]);
+                                            }
+
+                                            orig_listener.apply(input, [event]);
+                                        };
+                                    }
+
+                                    // add the modified listener
+                                    _addEventListener.apply(input, [type, listener]);
+                                }
+
+                                if (input.addEventListener)
+                                    input.addEventListener = addEventListenerWrapper;
+                                else if (input.attachEvent)
+                                    input.attachEvent = addEventListenerWrapper;
+
+                            })(pac_input);
+
+
+                            $(function () {
+                                var autocomplete = new google.maps.places.Autocomplete(pac_input);
+                            });
+                        </script>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>Date and Time</h3>
+
+
+            <table>
+                <tr>
+
+                    <td>Date</td>
+                    <td><input type='date' name='date' id='date1'  onblur="validate('date', this.value)"></td>
+                    <td>
+                        <div id='date'></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Time</td>
+                    <td><input type='time' name='time' id='time1'  onblur="validate('time', this.value)"></td>
+                    <td>
+                        <div id='time'></div>
+                    </td>
+                </tr>
+            </table>
+            <input id="button" type='button' onclick="checkForm()" value='Submit'>
+            <input type="reset" name="reset" id="reset"/>
+        </form>
+    </div>
+    <div id='content'>
+
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+"CREATE TABLE wdassign2 (BookingNum VARCHAR (6) UNIQUE KEY, CustName VARCHAR (20) NOT NULL,
+                     CustNum INT (15) NOT NULL , UnitNum VARCHAR (5),StNum VARCHAR (5) NOT NULL , StName VARCHAR (30) NOT NULL ,
+                     Suburb VARCHAR (30) NOT NULL , Destination VARCHAR (50) NOT NULL ,
+                     Date DATE NOT NULL , Time TIME NOT NULL, Status VARCHAR (10) )";

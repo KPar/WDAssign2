@@ -1,0 +1,43 @@
+<!--Name: Ken Par-->
+<!--Student ID: 1084471-->
+
+<!DOCTYPE html>
+<html XMLns="http:/www.w3.org/1999/xHTML">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <script type="text/javascript" src="xhr.js"></script>
+    <script type="text/javascript" src="ajax.js"></script>
+    <link rel="stylesheet" type="text/css" href="design.css">
+</head>
+<body>
+<div id="menu" class="center">
+    <h1>Cabs Online</h1>
+    <ul>
+        <li><a href="index.htm">Home</a></li>
+        <li><a href="booking.htm">Book A Taxi</a></li>
+        <li><a href="admin.htm">Admin</a></li>
+    </ul>
+</div>
+
+<div id="admin">
+<h2>Cabs Online Admin Page</h2>
+<input type="button" value="Bookings" onclick="getData('retrieve.php','ajaxDiv')">
+<div id ="ajaxDiv">
+    <p></p>
+</div>
+
+
+<div>
+    <br>
+<input type="text" id="assign" name="assign"  placeholder='Enter Booking ID here'>
+<input type="button" value="Assign"   onclick="assignData('assign.php','assigndiv') ">
+</div>
+<div id="assigndiv">
+    <p></p>
+</div>
+
+</div>
+
+</body>
+</html>
